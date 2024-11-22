@@ -1,146 +1,147 @@
 {
-    "name": "Stone Building Pieces", 
-    "pieces": {
-      "stone_beam": {
-         "name": "Stone Beam",
-         "resources": {
-            "wood": 10,
-            "iron_ingot": 8,
-            "iron_nail": 8
+   "name":"Stone Building Pieces",
+   "pieces":{
+      "reinforced_ladder":{
+         "name":"Reinforced Ladder",
+         "resources":{
+            "wood":10,
+            "iron_ingot":8,
+            "iron_nail":8
          }
       },
-      "stone_floor": {
-         "name": "Stone Floor",
-         "resources": {
-            "wood": 10,
-            "iron_ingot": 8,
-            "iron_nail": 8
+      "reinforced_railing":{
+         "name":"Reinforced Railing",
+         "resources":{
+            "wood":10,
+            "iron_ingot":8,
+            "iron_nail":8
          }
       },
-      "stone_floor_trapdoor": {
-         "name": "Stone Floor Trapdoor", 
-         "resources": {
-            "wood": 4,
-            "iron_ingot": 2,
-            "iron_nail": 4,
-            "rope": 4
+      "reinforced_trapdoor":{
+         "name":"Reinforced Trapdoor",
+         "resources":{
+            "wood":4,
+            "iron_ingot":2,
+            "iron_nail":4,
+            "rope":4
          }
       },
-      "stone_frame": {
-         "name": "Stone Frame",
-         "resources": {
-            "wood": 4,
-            "iron_ingot": 2,
-            "iron_nail": 8,
-            "rope": 4
+      "reinforced_window":{
+         "name":"Reinforced Window",
+         "resources":{
+            "wood":4,
+            "iron_ingot":2,
+            "iron_nail":8,
+            "rope":4
          }
       },
-      "stone_halfpieces": {
-         "name": "Stone Halfpieces",
-         "resources": {
-            "wood": 2,
-            "stone": 6,
-            "leather": 1,
-            "iron_nail": 6
+      "stone_beam":{
+         "name":"Stone Beam",
+         "resources":{
+            "wood":2,
+            "stone":6,
+            "leather":1,
+            "iron_nail":6
          }
       },
-      "stone_halfpitches": {
-         "name": "Stone Halfpitches",
-         "resources": {
-            "wood": 6,
-            "stone": 20,
-            "leather": 4,
-            "iron_nail": 6
+      "stone_floor":{
+         "name":"Stone Floor",
+         "resources":{
+            "wood":6,
+            "stone":20,
+            "leather":4,
+            "iron_nail":6
          }
       },
-      "reinforced_ladder": {
-         "name": "Reinforced Ladder",
-         "resources": {
-            "wood": 6,
-            "stone": 20,
-            "leather": 4,
-            "iron_nail": 6
+      "stone_floor_trapdoor":{
+         "name":"Stone Floor Trapdoor",
+         "resources":{
+            "wood":6,
+            "stone":20,
+            "leather":4,
+            "iron_nail":6
          }
       },
-      "reinforced_railing": {
-         "name": "Reinforced Railing",
-         "resources": {
-            "stone": 40,
-            "leather": 4,
-            "iron_nail": 12
+      "stone_frame":{
+         "name":"Stone Frame",
+         "resources":{
+            "wood":12,
+            "stone":40,
+            "leather":4,
+            "iron_nail":12
          }
       },
-      "reinforced_trapdoor": {
-         "name": "Reinforced Trapdoor",
-         "resources": {
-            "wood": 6,
-            "stone": 20,
-            "leather": 4,
-            "iron_nail": 6
+      "stone_halfpieces":{
+         "name":"Stone Halfpieces",
+         "resources":{
+            "wood":6,
+            "stone":20,
+            "leather":4,
+            "iron_nail":6
          }
       },
-      "reinforced_window": {
-         "name": "Reinforced Window",
-         "resources": {
-            "wood": 6,
-            "stone": 20,
-            "leather": 4,
-            "iron_nail": 6
+      "stone_halfpitches":{
+         "name":"Stone Halfpitches",
+         "resources":{
+            "wood":6,
+            "stone":20,
+            "leather":4,
+            "iron_nail":6
          }
       },
-      "stone_ramp": {
-         "name": "Stone Ramp",
-         "resources": {
-            "wood": 6,
-            "stone": 20,
-            "leather": 4,
-            "iron_nail": 6
+      "stone_ramp":{
+         "name":"Stone Ramp",
+         "resources":{
+            "wood":6,
+            "stone":20,
+            "leather":4,
+            "iron_nail":6
          }
       },
-      "stone_roof": {
-         "name": "Stone Roof",
-         "resources": {
-            "wood": 6,
-            "stone": 20,
-            "leather": 4,
-            "iron_nail": 6
+      "stone_roof":{
+         "name":"Stone Roof",
+         "resources":{
+            "wood":6,
+            "stone":20,
+            "leather":4,
+            "iron_nail":6
          }
       },
-      "stone_roof_corner": {
-         "name": "Stone Roof Corner",
-         "resources": {
-            "wood": 3,
-            "stone": 10,
-            "leather": 2,
-            "iron_nail": 4
+      "stone_roof_corner":{
+         "name":"Stone Roof Corner",
+         "resources":{
+            "wood":3,
+            "stone":10,
+            "leather":2,
+            "iron_nail":4
          }
       },
-      "stone_stairs": {
-         "name": "Stone Stairs",
-         "resources": {
-            "wood": 6,
-            "stone": 20,
-            "leather": 4,
-            "iron_nail": 6
+      "stone_stairs":{
+         "name":"Stone Stairs",
+         "resources":{
+            "wood":6,
+            "stone":20,
+            "leather":4,
+            "iron_nail":6
          }
       },
-      "stone_wall": {
-         "name": "Stone Wall",
-         "resources": {
-            "wood": 6,
-            "stone": 20,
-            "leather": 4,
-            "iron_nail": 6
+      "stone_wall":{
+         "name":"Stone Wall",
+         "resources":{
+            "wood":6,
+            "stone":20,
+            "leather":4,
+            "iron_nail":6
          }
       },
-      "stone_wall_angled": {
-         "name": "Stone Wall Angled",
-         "resources": {
-            "wood": 3,
-            "stone": 10,
-            "leather": 2,
-            "iron_nail": 4
+      "stone_wall_angled":{
+         "name":"Stone Wall Angled",
+         "resources":{
+            "wood":3,
+            "stone":10,
+            "leather":2,
+            "iron_nail":4
          }
       }
-    }
+   }
 }

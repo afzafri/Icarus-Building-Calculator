@@ -60,8 +60,8 @@
       "thatch_roof":{
          "name":"Thatch Roof",
          "resources":{
-            "wood":20,
-            "thatch":3
+            "fiber":20,
+            "stick":3
          }
       },
       "thatch_roof_corner":{
@@ -88,8 +88,8 @@
       "thatch_wall_angled":{
          "name":"Thatch Wall Angled",
          "resources":{
-            "wood":10,
-            "thatch":2
+            "fiber":10,
+            "stick":2
          }
       },
       "thatch_window":{
