@@ -80,7 +80,7 @@ h2 {
 }
 
 .table-container {
-    overflow-x: auto;
+    overflow: visible !important;
 }
 
 .table {
@@ -88,6 +88,7 @@ h2 {
     border-collapse: collapse;
     text-align: left;
     min-width: max-content;
+    overflow: visible !important;
 }
 
 .table th,
@@ -96,6 +97,7 @@ h2 {
     border-bottom: 1px solid var(--border-color);
     min-width: 100px;
     max-width: 200px;
+    overflow: visible !important;
 }
 
 .table th {
@@ -204,4 +206,26 @@ option {
 .table td:last-child {
     min-width: 50px;
     width: 50px;
+}
+
+.choices {
+    margin-bottom: 0;
+}
+
+.choices__inner {
+    padding: 4px 8px;
+    min-height: 32px;
+}
+
+.choices__list--dropdown {
+    z-index: 999999;
+}
+
+.choices__list--single {
+    padding: 0;
+}
+
+td .choices {
+    min-width: 200px;
+    display: block;
 }

@@ -1,3 +1,31 @@
+function updateRowResources(row, pieceSelect, quantityInput) {
+    console.log('Updating resources for:', {
+        selectValue: pieceSelect.value,
+        quantity: quantityInput.value
+    });
+    
+    // Split the value to get building type and piece key
+    const [buildingType, pieceKey] = pieceSelect.value.split(':');
+    
+    console.log('Parsed values:', {
+        buildingType,
+        pieceKey
+    });
+    
+    const piece = buildingType && pieceKey ? allBuildingPieces[buildingType].pieces[pieceKey] : null;
+    const quantity = parseInt(quantityInput.value) || 0;
+
+    console.log('Found piece:', piece);
+    console.log('Quantity:', quantity);
+
+    // Store the resources data on the row
+    row.dataset.resources = piece ? JSON.stringify(piece.resources) : '{}';
+    row.dataset.quantity = quantity;
+
+    // Update in the correct order
+    updateResourceColumns();
+    updateTotalResources();
+} 
 // State management
 let buildingPieces = null;
 let uniqueResources = new Set();
@@ -68,47 +96,41 @@ function updateTableHeaders() {
 function addNewPieceRow() {
     const row = document.createElement('tr');
     
-    // Create piece type select with all available pieces
+    // Create cells
+    const selectCell = document.createElement('td');
+    const quantityCell = document.createElement('td');
+    const deleteCell = document.createElement('td');
+    
+    // Create select element
     const pieceSelect = document.createElement('select');
     pieceSelect.className = 'select-styled';
     
-    // Create the initial option
+    // Add initial option
     let selectOptions = '<option value="">Select Piece</option>';
     
-    // Use buildingTypes array to maintain order
+    // Add all building types and pieces
     buildingTypes.forEach(type => {
         const data = allBuildingPieces[type.key];
         selectOptions += `<optgroup label="${data.name}">`;
-        
-        // Use the stored order to create options
         buildingPiecesOrder[type.key].forEach(key => {
             const piece = data.pieces[key];
             selectOptions += `<option value="${type.key}:${key}">${piece.name}</option>`;
         });
-        
         selectOptions += '</optgroup>';
     });
     
     pieceSelect.innerHTML = selectOptions;
-
+    selectCell.appendChild(pieceSelect);
+    
     // Create quantity input
     const quantityInput = document.createElement('input');
     quantityInput.type = 'number';
     quantityInput.min = '0';
     quantityInput.value = '0';
     quantityInput.className = 'quantity-input';
-
-    // Add basic cells to row
-    row.innerHTML = `
-        <td></td>
-        <td></td>
-        <td></td>
-    `;
+    quantityCell.appendChild(quantityInput);
     
-    row.firstElementChild.appendChild(pieceSelect);
-    row.children[1].appendChild(quantityInput);
-
-    // Add delete button
+    // Create delete button
     const deleteButton = document.createElement('button');
     deleteButton.className = 'btn btn-icon delete-row';
     deleteButton.innerHTML = '×';
@@ -117,36 +139,82 @@ function addNewPieceRow() {
         updateResourceColumns();
         updateTotalResources();
     };
-    row.lastElementChild.appendChild(deleteButton);
-
+    deleteCell.appendChild(deleteButton);
+    
+    // Append cells to row
+    row.appendChild(selectCell);
+    row.appendChild(quantityCell);
+    row.appendChild(deleteCell);
+    
+    // Append row to table
     piecesTableBody.appendChild(row);
+    
+    // Initialize Choices
+    const choices = new Choices(pieceSelect, {
+        searchEnabled: true,
+        searchPlaceholderValue: "Search for a piece...",
+        placeholder: true,
+        placeholderValue: "Select a piece",
+        removeItemButton: false,
+        searchFields: ['label'],
+        position: 'bottom',
+        itemSelectText: '',
+        shouldSort: false,
+        renderChoiceLimit: -1,
+        searchResultLimit: 1000,
+        loadingText: 'Loading...',
+        noResultsText: 'No results found',
+        noChoicesText: 'No choices to choose from',
+        maxItemCount: -1,
+        duplicateItemsAllowed: false
+    });
 
     // Add event listeners
-    pieceSelect.addEventListener('change', () => {
-        updateRowResources(row);
+    choices.passedElement.element.addEventListener('change', (e) => {
+        console.log('Select changed', e.target.value);
+        updateRowResources(row, pieceSelect, quantityInput);
         updateResourceColumns();
     });
-    quantityInput.addEventListener('input', () => {
-        updateRowResources(row);
+    
+    quantityInput.addEventListener('input', (e) => {
+        console.log('Quantity changed', e.target.value);
+        updateRowResources(row, pieceSelect, quantityInput);
         updateTotalResources();
+    });
+
+    pieceSelect.addEventListener('click', (e) => {
+        console.log('Select clicked', e);
     });
 }
 
 // Update resources for a specific row
-function updateRowResources(row) {
-    const pieceSelect = row.querySelector('select');
-    const quantityInput = row.querySelector('input');
+function updateRowResources(row, pieceSelect, quantityInput) {
+    console.log('Updating resources for:', {
+        selectValue: pieceSelect.value,
+        quantity: quantityInput.value
+    });
     
     // Split the value to get building type and piece key
     const [buildingType, pieceKey] = pieceSelect.value.split(':');
+    
+    console.log('Parsed values:', {
+        buildingType,
+        pieceKey
+    });
+    
     const piece = buildingType && pieceKey ? allBuildingPieces[buildingType].pieces[pieceKey] : null;
     const quantity = parseInt(quantityInput.value) || 0;
+
+    console.log('Found piece:', piece);
+    console.log('Quantity:', quantity);
 
     // Store the resources data on the row
     row.dataset.resources = piece ? JSON.stringify(piece.resources) : '{}';
     row.dataset.quantity = quantity;
 
+    // Update in the correct order
     updateResourceColumns();
+    updateTotalResources();
 }
 
 // Update resource columns based on selected pieces
@@ -243,4 +311,8 @@ function formatResourceName(resource) {
 }
 
 // Initialize the application
-init(); 
+init();
+
+// Add this at the end of your script
+console.log('Choices available:', typeof Choices !== 'undefined');
+console.log('Choices version:', Choices.version); 
