@@ -1,10 +1,11 @@
 // State management
-let currentBuildingType = null;
 let buildingPieces = null;
 let uniqueResources = new Set();
+let allBuildingPieces = {}; // Store all loaded building pieces
+let buildingTypes = []; // Store the ordered building types
+let buildingPiecesOrder = {}; // Store the order of pieces
 
 // DOM Elements
-const buildingTypeSelect = document.getElementById('buildingType');
 const piecesTable = document.getElementById('piecesTable');
 const piecesTableBody = document.getElementById('piecesTableBody');
 const summaryTableBody = document.getElementById('summaryTableBody');
@@ -16,84 +17,79 @@ async function init() {
         // Load building types
         const response = await fetch('data/building-types.json');
         const data = await response.json();
+        // Store the building types array to maintain order
+        buildingTypes = data.building_types;
         
-        // Populate building type dropdown
-        data.building_types.forEach(type => {
-            const option = document.createElement('option');
-            option.value = type.key.toLowerCase();
-            option.textContent = type.key;
-            buildingTypeSelect.appendChild(option);
-        });
+        // Load all building pieces data at startup
+        await Promise.all(buildingTypes.map(async type => {
+            const response = await fetch(`data/${type.file}`);
+            const pieceData = await response.json();
+            allBuildingPieces[type.key] = pieceData;
+            // Store the original order of pieces
+            buildingPiecesOrder[type.key] = Object.keys(pieceData.pieces);
+        }));
 
-        // Event listeners
-        buildingTypeSelect.addEventListener('change', handleBuildingTypeChange);
-        addPieceButton.addEventListener('click', addNewPieceRow);
+        // Enable add piece button immediately since we have all data
+        addPieceButton.disabled = false;
         
-        // Initially disable the add piece button until a building type is selected
-        addPieceButton.disabled = true;
+        // Update table headers with all possible resources
+        updateTableHeaders();
+        
+        // Event listeners
+        addPieceButton.addEventListener('click', addNewPieceRow);
     } catch (error) {
         console.error('Failed to initialize:', error);
     }
 }
 
-// Handle building type change
-async function handleBuildingTypeChange(event) {
-    const selectedType = event.target.value;
-    if (!selectedType) {
-        addPieceButton.disabled = true;
-        clearTables();
-        return;
-    }
-
-    try {
-        // Load building pieces data
-        const response = await fetch(`data/${selectedType}-building-pieces.json`);
-        buildingPieces = await response.json();
-        currentBuildingType = selectedType;
-        
-        // Enable add piece button
-        addPieceButton.disabled = false;
-        
-        // Reset tables
-        clearTables();
-        
-        // Update table headers based on available resources
-        updateTableHeaders();
-    } catch (error) {
-        console.error('Failed to load building pieces:', error);
-    }
-}
-
 // Update table headers based on available resources
 function updateTableHeaders() {
-    // Get all unique resources from the building pieces
+    // Get all unique resources from all building pieces
     uniqueResources = new Set();
-    Object.values(buildingPieces.pieces).forEach(piece => {
-        Object.keys(piece.resources).forEach(resource => uniqueResources.add(resource));
+    Object.values(allBuildingPieces).forEach(buildingType => {
+        Object.values(buildingType.pieces).forEach(piece => {
+            Object.keys(piece.resources).forEach(resource => uniqueResources.add(resource));
+        });
     });
 
-    // Create header row
+    // Initialize with basic columns
     const headerRow = piecesTable.querySelector('thead tr');
     headerRow.innerHTML = `
         <th>Piece Type</th>
         <th>Quantity</th>
-        ${Array.from(uniqueResources).map(resource => `<th>${formatResourceName(resource)}</th>`).join('')}
+        <th></th>
     `;
+
+    // Track active resources for dynamic column management
+    window.activeResources = new Set();
 }
 
 // Add new piece row
 function addNewPieceRow() {
     const row = document.createElement('tr');
     
-    // Create piece type select
+    // Create piece type select with all available pieces
     const pieceSelect = document.createElement('select');
     pieceSelect.className = 'select-styled';
-    pieceSelect.innerHTML = `
-        <option value="">Select Piece</option>
-        ${Object.entries(buildingPieces.pieces)
-            .map(([key, piece]) => `<option value="${key}">${piece.name}</option>`)
-            .join('')}
-    `;
+    
+    // Create the initial option
+    let selectOptions = '<option value="">Select Piece</option>';
+    
+    // Use buildingTypes array to maintain order
+    buildingTypes.forEach(type => {
+        const data = allBuildingPieces[type.key];
+        selectOptions += `<optgroup label="${data.name}">`;
+        
+        // Use the stored order to create options
+        buildingPiecesOrder[type.key].forEach(key => {
+            const piece = data.pieces[key];
+            selectOptions += `<option value="${type.key}:${key}">${piece.name}</option>`;
+        });
+        
+        selectOptions += '</optgroup>';
+    });
+    
+    pieceSelect.innerHTML = selectOptions;
 
     // Create quantity input
     const quantityInput = document.createElement('input');
@@ -102,19 +98,15 @@ function addNewPieceRow() {
     quantityInput.value = '0';
     quantityInput.className = 'quantity-input';
 
-    // Add cells to row
+    // Add basic cells to row
     row.innerHTML = `
         <td></td>
         <td></td>
-        ${Array.from(uniqueResources).map(() => '<td class="resource-amount">0</td>').join('')}
+        <td></td>
     `;
     
     row.firstElementChild.appendChild(pieceSelect);
     row.children[1].appendChild(quantityInput);
-
-    // Add event listeners
-    pieceSelect.addEventListener('change', () => updateRowResources(row));
-    quantityInput.addEventListener('input', () => updateRowResources(row));
 
     // Add delete button
     const deleteButton = document.createElement('button');
@@ -122,24 +114,84 @@ function addNewPieceRow() {
     deleteButton.innerHTML = '×';
     deleteButton.onclick = () => {
         row.remove();
+        updateResourceColumns();
         updateTotalResources();
     };
-    row.appendChild(document.createElement('td')).appendChild(deleteButton);
+    row.lastElementChild.appendChild(deleteButton);
 
     piecesTableBody.appendChild(row);
+
+    // Add event listeners
+    pieceSelect.addEventListener('change', () => {
+        updateRowResources(row);
+        updateResourceColumns();
+    });
+    quantityInput.addEventListener('input', () => {
+        updateRowResources(row);
+        updateTotalResources();
+    });
 }
 
 // Update resources for a specific row
 function updateRowResources(row) {
     const pieceSelect = row.querySelector('select');
     const quantityInput = row.querySelector('input');
-    const piece = buildingPieces.pieces[pieceSelect.value];
+    
+    // Split the value to get building type and piece key
+    const [buildingType, pieceKey] = pieceSelect.value.split(':');
+    const piece = buildingType && pieceKey ? allBuildingPieces[buildingType].pieces[pieceKey] : null;
     const quantity = parseInt(quantityInput.value) || 0;
 
-    // Update resource amounts in the row
-    Array.from(uniqueResources).forEach((resource, index) => {
-        const amount = piece ? (piece.resources[resource] || 0) * quantity : 0;
-        row.querySelectorAll('.resource-amount')[index].textContent = amount;
+    // Store the resources data on the row
+    row.dataset.resources = piece ? JSON.stringify(piece.resources) : '{}';
+    row.dataset.quantity = quantity;
+
+    updateResourceColumns();
+}
+
+// Update resource columns based on selected pieces
+function updateResourceColumns() {
+    const headerRow = piecesTable.querySelector('thead tr');
+    const rows = piecesTableBody.querySelectorAll('tr');
+    
+    // Collect all currently used resources
+    const usedResources = new Set();
+    rows.forEach(row => {
+        if (row.dataset.resources) {
+            const resources = JSON.parse(row.dataset.resources);
+            Object.keys(resources).forEach(resource => usedResources.add(resource));
+        }
+    });
+
+    // Update headers
+    const resourceHeaders = Array.from(usedResources).map(resource => 
+        `<th>${formatResourceName(resource)}</th>`
+    ).join('');
+    
+    headerRow.innerHTML = `
+        <th>Piece Type</th>
+        <th>Quantity</th>
+        ${resourceHeaders}
+        <th></th>
+    `;
+
+    // Update each row
+    rows.forEach(row => {
+        const resources = row.dataset.resources ? JSON.parse(row.dataset.resources) : {};
+        const quantity = parseInt(row.dataset.quantity) || 0;
+        
+        // Remove only resource cells, keeping the first two and last cells intact
+        const cells = Array.from(row.children);
+        cells.slice(2, -1).forEach(cell => cell.remove());
+        
+        // Add resource cells
+        usedResources.forEach(resource => {
+            const td = document.createElement('td');
+            td.className = 'resource-amount';
+            td.textContent = (resources[resource] || 0) * quantity;
+            // Insert before the last cell (delete button)
+            row.insertBefore(td, row.lastElementChild);
+        });
     });
 
     updateTotalResources();
@@ -147,14 +199,22 @@ function updateRowResources(row) {
 
 // Update total resources summary
 function updateTotalResources() {
+    const rows = piecesTableBody.querySelectorAll('tr');
     const totals = {};
     
+    // Get current resource columns
+    const resourceColumns = Array.from(piecesTable.querySelectorAll('thead th'))
+        .slice(2, -1) // Exclude first two columns and last column
+        .map(th => th.textContent);
+    
     // Calculate totals
-    Array.from(uniqueResources).forEach(resource => {
-        totals[resource] = Array.from(piecesTableBody.querySelectorAll('tr')).reduce((sum, row) => {
-            const resourceIndex = Array.from(uniqueResources).indexOf(resource);
-            return sum + parseInt(row.querySelectorAll('.resource-amount')[resourceIndex].textContent || 0);
-        }, 0);
+    rows.forEach(row => {
+        const resourceCells = Array.from(row.querySelectorAll('.resource-amount'));
+        resourceCells.forEach((cell, index) => {
+            const resourceName = resourceColumns[index];
+            const amount = parseInt(cell.textContent) || 0;
+            totals[resourceName] = (totals[resourceName] || 0) + amount;
+        });
     });
 
     // Update summary table
@@ -162,7 +222,7 @@ function updateTotalResources() {
         .filter(([, amount]) => amount > 0)
         .map(([resource, amount]) => `
             <tr>
-                <td>${formatResourceName(resource)}</td>
+                <td>${resource}</td>
                 <td>${amount}</td>
             </tr>
         `).join('');
