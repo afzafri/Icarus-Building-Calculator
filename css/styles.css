@@ -261,3 +261,8 @@ td .choices {
     min-width: 200px;
     display: block;
 }
+
+.game-logo {
+    height: 100px;
+    width: auto;
+}
