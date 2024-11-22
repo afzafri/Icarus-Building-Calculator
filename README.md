@@ -33,6 +33,7 @@ A web-based calculator tool for planning building projects in the game Icarus. T
 
 ## Project Structure
 
+```
 icarus/
 ├── index.html
 ├── css/
@@ -40,13 +41,14 @@ icarus/
 ├── js/
 │ └── script.js
 └── data/
-├──── building-types.json
-├──── thatch-building-pieces.json
-├──── wood-building-pieces.json
-├──── stone-building-pieces.json
-├──── concrete-building-pieces.json
-├──── aluminium-building-pieces.json
-└──── glass-building-pieces.json
+│ ├── building-types.json
+│ ├── thatch-building-pieces.json
+│ ├── wood-building-pieces.json
+│ ├── stone-building-pieces.json
+│ ├── concrete-building-pieces.json
+│ ├── aluminium-building-pieces.json
+│ └── glass-building-pieces.json
+```
 
 ## Technologies Used
 
