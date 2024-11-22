@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icarus Building Calculator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Add Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Icarus Building Calculator</h1>
+            <p class="subtitle">Plan your building projects and calculate crafting resources for walls, floors, and more</p>
+        </header>
+        
+        <!-- Building Type Selection -->
+        <div class="card building-selection">
+            <label for="buildingType">Building Type</label>
+            <select id="buildingType" class="select-styled">
+                <option value="">-- Select Type --</option>
+                <!-- Building types will be dynamically loaded from JSON -->
+            </select>
+        </div>
+
+        <!-- Building Pieces Table -->
+        <div class="card building-pieces">
+            <div class="card-header">
+                <h2>Building Pieces</h2>
+                <button id="addPiece" class="btn btn-primary">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                    Add Piece
+                </button>
+            </div>
+            <div class="table-container">
+                <table id="piecesTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>Piece Type</th>
+                            <th>Quantity</th>
+                            <!-- Resource columns will be dynamically added -->
+                        </tr>
+                    </thead>
+                    <tbody id="piecesTableBody">
+                        <!-- Rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Resource Summary -->
+        <div class="card resource-summary">
+            <h2>Total Resources Required</h2>
+            <div class="table-container">
+                <table id="summaryTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>Total Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="summaryTableBody">
+                        <!-- Summary rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
