@@ -1,12 +1,14 @@
 :root {
-    --primary-color: #2563eb;
-    --primary-hover: #1d4ed8;
-    --background-color: #f8fafc;
-    --card-background: #ffffff;
-    --text-color: #1e293b;
-    --border-color: #e2e8f0;
+    --primary-color: #f1ad1c;
+    --primary-hover: #f6cf7c;
+    --background-color: #231f20;
+    --card-background: #444141;
+    --text-color: #e6e6e6;
+    --border-color: #545152;
     --border-radius: 0.5rem;
-    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.2);
+    --accent-color: #d3e5ae;
+    --accent-hover: #a9cc60;
 }
 
 * {
@@ -16,7 +18,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Barlow', 'Inter', sans-serif;
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.5;
@@ -37,10 +39,11 @@ h1 {
     font-size: 2.25rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
 .subtitle {
-    color: #64748b;
+    color: var(--text-color);
 }
 
 .card {
@@ -62,6 +65,7 @@ h2 {
     font-size: 1.5rem;
     font-weight: 600;
     margin-bottom: 1rem;
+    color: var(--primary-color);
 }
 
 .select-styled {
@@ -101,12 +105,12 @@ h2 {
 }
 
 .table th {
-    background-color: #f8fafc;
+    background-color: var(--background-color);
     font-weight: 600;
 }
 
 .table tbody tr:hover {
-    background-color: #f8fafc;
+    background-color: var(--card-background);
 }
 
 .btn {
@@ -123,7 +127,7 @@ h2 {
 
 .btn-primary {
     background-color: var(--primary-color);
-    color: white;
+    color: #000;
 }
 
 .btn-primary:hover {
@@ -168,13 +172,13 @@ label {
 
 .btn-icon {
     padding: 0.25rem 0.5rem;
-    background: #ef4444;
+    background: #dd001a;
     color: white;
     border-radius: var(--border-radius);
 }
 
 .btn-icon:hover {
-    background: #dc2626;
+    background: #fe4359;
 }
 
 .resource-amount {
@@ -212,6 +216,12 @@ option {
     margin-bottom: 0;
 }
 
+.choices__heading {
+    color: white;
+    background-color: var(--primary-color);
+    font-size: 16px;
+}
+
 .choices__inner {
     padding: 4px 8px;
     min-height: 32px;
@@ -219,10 +229,32 @@ option {
 
 .choices__list--dropdown {
     z-index: 999999;
+    background-color: white;
+    color: black;
+}
+
+.choices__list--dropdown .choices__item {
+    color: black;
+}
+
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+    background-color: var(--accent-color);
+    color: black;
+}
+
+.choices__inner {
+    background-color: white;
+    color: black;
+}
+
+.choices__input {
+    background-color: white;
+    color: black;
 }
 
 .choices__list--single {
     padding: 0;
+    color: black;
 }
 
 td .choices {
