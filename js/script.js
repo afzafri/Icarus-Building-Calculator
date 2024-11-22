@@ -98,7 +98,7 @@ function addNewPieceRow() {
     const quantityInput = document.createElement('input');
     quantityInput.type = 'number';
     quantityInput.min = '0';
-    quantityInput.value = '0';
+    quantityInput.value = '';
     quantityInput.className = 'quantity-input';
     quantityCell.appendChild(quantityInput);
     
@@ -145,6 +145,10 @@ function addNewPieceRow() {
     choices.passedElement.element.addEventListener('change', (e) => {
         updateRowResources(row, pieceSelect, quantityInput);
         updateResourceColumns();
+        // Add a small delay before focusing
+        setTimeout(() => {
+            quantityInput.focus();
+        }, 50);
     });
     
     quantityInput.addEventListener('input', (e) => {
