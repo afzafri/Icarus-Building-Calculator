@@ -1,31 +1,3 @@
-function updateRowResources(row, pieceSelect, quantityInput) {
-    console.log('Updating resources for:', {
-        selectValue: pieceSelect.value,
-        quantity: quantityInput.value
-    });
-    
-    // Split the value to get building type and piece key
-    const [buildingType, pieceKey] = pieceSelect.value.split(':');
-    
-    console.log('Parsed values:', {
-        buildingType,
-        pieceKey
-    });
-    
-    const piece = buildingType && pieceKey ? allBuildingPieces[buildingType].pieces[pieceKey] : null;
-    const quantity = parseInt(quantityInput.value) || 0;
-
-    console.log('Found piece:', piece);
-    console.log('Quantity:', quantity);
-
-    // Store the resources data on the row
-    row.dataset.resources = piece ? JSON.stringify(piece.resources) : '{}';
-    row.dataset.quantity = quantity;
-
-    // Update in the correct order
-    updateResourceColumns();
-    updateTotalResources();
-} 
 // State management
 let buildingPieces = null;
 let uniqueResources = new Set();
@@ -171,42 +143,23 @@ function addNewPieceRow() {
 
     // Add event listeners
     choices.passedElement.element.addEventListener('change', (e) => {
-        console.log('Select changed', e.target.value);
         updateRowResources(row, pieceSelect, quantityInput);
         updateResourceColumns();
     });
     
     quantityInput.addEventListener('input', (e) => {
-        console.log('Quantity changed', e.target.value);
         updateRowResources(row, pieceSelect, quantityInput);
         updateTotalResources();
-    });
-
-    pieceSelect.addEventListener('click', (e) => {
-        console.log('Select clicked', e);
     });
 }
 
 // Update resources for a specific row
 function updateRowResources(row, pieceSelect, quantityInput) {
-    console.log('Updating resources for:', {
-        selectValue: pieceSelect.value,
-        quantity: quantityInput.value
-    });
-    
     // Split the value to get building type and piece key
     const [buildingType, pieceKey] = pieceSelect.value.split(':');
     
-    console.log('Parsed values:', {
-        buildingType,
-        pieceKey
-    });
-    
     const piece = buildingType && pieceKey ? allBuildingPieces[buildingType].pieces[pieceKey] : null;
     const quantity = parseInt(quantityInput.value) || 0;
-
-    console.log('Found piece:', piece);
-    console.log('Quantity:', quantity);
 
     // Store the resources data on the row
     row.dataset.resources = piece ? JSON.stringify(piece.resources) : '{}';
@@ -215,7 +168,7 @@ function updateRowResources(row, pieceSelect, quantityInput) {
     // Update in the correct order
     updateResourceColumns();
     updateTotalResources();
-}
+} 
 
 // Update resource columns based on selected pieces
 function updateResourceColumns() {
@@ -312,7 +265,3 @@ function formatResourceName(resource) {
 
 // Initialize the application
 init();
-
-// Add this at the end of your script
-console.log('Choices available:', typeof Choices !== 'undefined');
-console.log('Choices version:', Choices.version); 
