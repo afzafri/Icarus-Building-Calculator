@@ -283,3 +283,57 @@ td .choices {
 .footer a:hover {
     text-decoration: underline;
 }
+
+.select-with-tooltip {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.select-with-tooltip .choices {
+    flex: 1;
+}
+
+.info-tooltip {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    cursor: help;
+}
+
+.info-tooltip span {
+    font-size: 1.2em;
+}
+
+.tooltip-content {
+    visibility: hidden;
+    position: absolute;
+    background: #fff;
+    color: #333;
+    padding: 10px;
+    border-radius: 4px;
+    width: 200px;
+    z-index: 1000;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    border: 1px solid #ddd;
+}
+
+.info-tooltip:hover .tooltip-content {
+    visibility: visible;
+}
+
+/* Arrow pointing left */
+.tooltip-content::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 5px 10px 5px 0;
+    border-style: solid;
+    border-color: transparent #ddd transparent transparent;
+}

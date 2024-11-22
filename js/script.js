@@ -73,14 +73,25 @@ function addNewPieceRow() {
     const quantityCell = document.createElement('td');
     const deleteCell = document.createElement('td');
     
+    // Create a container for select and tooltip
+    const selectContainer = document.createElement('div');
+    selectContainer.className = 'select-with-tooltip';
+    
     // Create select element
     const pieceSelect = document.createElement('select');
     pieceSelect.className = 'select-styled';
     
-    // Add initial option
-    let selectOptions = '';
+    // Create piece info tooltip
+    const pieceInfoSpan = document.createElement('span');
+    pieceInfoSpan.className = 'info-tooltip';
+    pieceInfoSpan.innerHTML = `<span>ℹ️</span>
+        <div class="tooltip-content">
+            Select a piece to see requirements
+        </div>
+    `;
     
-    // Add all building types and pieces
+    // Add building types and pieces to select
+    let selectOptions = '';
     buildingTypes.forEach(type => {
         const data = allBuildingPieces[type.key];
         selectOptions += `<optgroup label="${data.name}">`;
@@ -92,7 +103,13 @@ function addNewPieceRow() {
     });
     
     pieceSelect.innerHTML = selectOptions;
-    selectCell.appendChild(pieceSelect);
+    
+    // Add select and tooltip to container
+    selectContainer.appendChild(pieceSelect);
+    selectContainer.appendChild(pieceInfoSpan);
+    
+    // Add container to cell
+    selectCell.appendChild(selectContainer);
     
     // Create quantity input
     const quantityInput = document.createElement('input');
@@ -141,10 +158,11 @@ function addNewPieceRow() {
         duplicateItemsAllowed: false
     });
 
-    // Add event listeners
+    // Update the event listener for piece selection
     choices.passedElement.element.addEventListener('change', (e) => {
         updateRowResources(row, pieceSelect, quantityInput);
         updateResourceColumns();
+        updatePieceTooltip(pieceSelect.value, pieceInfoSpan);
         // Add a small delay before focusing
         setTimeout(() => {
             quantityInput.focus();
@@ -265,6 +283,26 @@ function formatResourceName(resource) {
         .split('_')
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
+}
+
+// Add this new function
+function updatePieceTooltip(value, tooltipSpan) {
+    const [buildingType, pieceKey] = value.split(':');
+    const piece = allBuildingPieces[buildingType].pieces[pieceKey];
+    
+    if (piece) {
+        const resourceList = Object.entries(piece.resources)
+            .map(([resource, amount]) => `${formatResourceName(resource)}: ${amount}`)
+            .join('<br>');
+        
+        tooltipSpan.querySelector('.tooltip-content').innerHTML = `
+            <strong>${piece.name}</strong> requires:<br>
+            ${resourceList}
+        `;
+        
+        // For debugging
+        console.log('Updated tooltip content for:', piece.name);
+    }
 }
 
 // Initialize the application
