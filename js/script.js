@@ -78,7 +78,7 @@ function addNewPieceRow() {
     pieceSelect.className = 'select-styled';
     
     // Add initial option
-    let selectOptions = '<option value="">Select Piece</option>';
+    let selectOptions = '';
     
     // Add all building types and pieces
     buildingTypes.forEach(type => {
