@@ -153,3 +153,25 @@ label {
         font-size: 1.25rem;
     }
 } 
+
+.quantity-input {
+    width: 80px;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.btn-icon {
+    padding: 0.25rem 0.5rem;
+    background: #ef4444;
+    color: white;
+    border-radius: var(--border-radius);
+}
+
+.btn-icon:hover {
+    background: #dc2626;
+}
+
+.resource-amount {
+    text-align: right;
+}
