@@ -1,0 +1,103 @@
+{
+   "name":"Thatch Building Pieces",
+   "pieces":{
+      "thatch_beam":{
+         "name":"Thatch Beam",
+         "resources":{
+            "fiber":12,
+            "stick":6
+         }
+      },
+      "thatch_door":{
+         "name":"Thatch Door",
+         "resources":{
+            "fiber":10,
+            "stick":4
+         }
+      },
+      "thatch_floor":{
+         "name":"Thatch Floor",
+         "resources":{
+            "fiber":20,
+            "stick":3
+         }
+      },
+      "thatch_floor_trapdoor":{
+         "name":"Thatch Floor Trapdoor",
+         "resources":{
+            "fiber":20,
+            "stick":3
+         }
+      },
+      "thatch_halfpieces":{
+         "name":"Thatch Halfpieces",
+         "resources":{
+            "fiber":20,
+            "stick":3
+         }
+      },
+      "thatch_halfpitches":{
+         "name":"Thatch Halfpitches",
+         "resources":{
+            "fiber":20,
+            "stick":3
+         }
+      },
+      "thatch_ladder":{
+         "name":"Thatch Ladder",
+         "resources":{
+            "fiber":6,
+            "stick":10
+         }
+      },
+      "thatch_railing":{
+         "name":"Thatch Railing",
+         "resources":{
+            "fiber":8,
+            "stick":2
+         }
+      },
+      "thatch_roof":{
+         "name":"Thatch Roof",
+         "resources":{
+            "wood":20,
+            "thatch":3
+         }
+      },
+      "thatch_roof_corner":{
+         "name":"Thatch Roof Corner",
+         "resources":{
+            "fiber":10,
+            "stick":2
+         }
+      },
+      "thatch_trapdoor":{
+         "name":"Thatch Trapdoor",
+         "resources":{
+            "fiber":10,
+            "stick":4
+         }
+      },
+      "thatch_wall":{
+         "name":"Thatch Wall",
+         "resources":{
+            "fiber":20,
+            "stick":3
+         }
+      },
+      "thatch_wall_angled":{
+         "name":"Thatch Wall Angled",
+         "resources":{
+            "wood":10,
+            "thatch":2
+         }
+      },
+      "thatch_window":{
+         "name":"Thatch Window",
+         "resources":{
+            "fiber":10,
+            "stick":4
+         }
+      }
+   }
+}

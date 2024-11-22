@@ -1,0 +1,133 @@
+{
+   "name":"Aluminium Building Pieces",
+   "pieces":{
+      "aluminium_beam":{
+         "name":"Aluminium Beam",
+         "resources":{
+            "aluminium_ore":2,
+            "wood":2,
+            "steel_screw":2
+         }
+      },
+      "aluminium_door":{
+         "name":"Aluminium Door",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_floor":{
+         "name":"Aluminium Floor",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_floor_trapdoor":{
+         "name":"Aluminium Floor Trapdoor",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_halfpieces":{
+         "name":"Aluminium Halfpieces",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_halfpitches":{
+         "name":"Aluminium Halfpitches",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_ladder":{
+         "name":"Aluminium Ladder",
+         "resources":{
+            "aluminium_ore":2,
+            "wood":2,
+            "steel_screw":6
+         }
+      },
+      "aluminium_railing":{
+         "name":"Aluminium Railing",
+         "resources":{
+            "aluminium_ore":2,
+            "wood":2,
+            "steel_screw":6
+         }
+      },
+      "aluminium_ramp":{
+         "name":"Aluminium Ramp",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_roof":{
+         "name":"Aluminium Roof",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_roof_corner":{
+         "name":"Aluminium Roof Corner",
+         "resources":{
+            "aluminium_ore":2,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_stairs":{
+         "name":"Aluminium Stairs",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_trapdoor":{
+         "name":"Aluminium Trapdoor",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_wall":{
+         "name":"Aluminium Wall",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":4
+         }
+      },
+      "aluminium_wall_angled":{
+         "name":"Aluminium Wall Angled",
+         "resources":{
+            "aluminium_ore":4,
+            "wood":6,
+            "steel_screw":2
+         }
+      },
+      "aluminium_window":{
+         "name":"Aluminium Window",
+         "resources":{
+            "aluminium_ore":2,
+            "wood":3,
+            "steel_screw":4
+         }
+      }
+   }
+}

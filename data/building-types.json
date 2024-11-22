@@ -1,0 +1,10 @@
+{
+  "building_types": [
+    { "key": "Thatch", "file": "thatch-building-pieces.json" },
+    { "key": "Wood", "file": "wood-building-pieces.json" },
+    { "key": "Stone", "file": "stone-building-pieces.json" },
+    { "key": "Concrete", "file": "concrete-building-pieces.json" },
+    { "key": "Aluminium", "file": "aluminium-building-pieces.json" },
+    { "key": "Glass", "file": "glass-building-pieces.json" }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+   "name": "Glass Building Pieces",
+   "pieces": {
+      "glass_beam": {
+         "name": "Glass Beam",
+         "resources": {
+            "iron_ingot": 6,
+            "epoxy": 12
+         }
+      },
+      "glass_door": {
+         "name": "Glass Door",
+         "resources": {
+            "iron_ingot": 6,
+            "glass": 20,
+            "epoxy": 12
+         }
+      },
+      "glass_roof": {
+         "name": "Glass Roof",
+         "resources": {
+            "iron_ingot": 6,
+            "glass": 20,
+            "epoxy": 12
+         }
+      },
+      "glass_roof_corner": {
+         "name": "Glass Roof Corner",
+         "resources": {
+            "iron_ingot": 3,
+            "glass": 10,
+            "epoxy": 6
+         }
+      },
+      "glass_wall": {
+         "name": "Glass Wall",
+         "resources": {
+            "iron_ingot": 6,
+            "glass": 20,
+            "epoxy": 12
+         }
+      },
+      "glass_wall_angled": {
+         "name": "Glass Wall Angled",
+         "resources": {
+            "iron_ingot": 3,
+            "glass": 10,
+            "epoxy": 6
+         }
+      },
+      "glass_window": {
+         "name": "Glass Window",
+         "resources": {
+            "wood": 12,
+            "glass": 18,
+            "epoxy": 4
+         }
+      },
+      "heavy_glass_window": {
+         "name": "Heavy Glass Window",
+         "resources": {
+            "iron_ingot": 12,
+            "glass": 18,
+            "epoxy": 4
+         }
+      }
+   }
+}

@@ -1,0 +1,124 @@
+{
+   "name":"Wood Building Pieces",
+   "pieces":{
+      "wood_beam":{
+         "name":"Wood Beam",
+         "resources":{
+            "fiber":10,
+            "wood":20
+         }
+      },
+      "wood_door":{
+         "name":"Wood Door",
+         "resources":{
+            "fiber":15,
+            "wood":25
+         }
+      },
+      "wood_floor":{
+         "name":"Wood Floor",
+         "resources":{
+            "fiber":10,
+            "wood":20
+         }
+      },
+      "wood_floor_trapdoor":{
+         "name":"Wood Floor Trapdoor",
+         "resources":{
+            "fiber":15,
+            "wood":25
+         }
+      },
+      "wood_halfpieces":{
+         "name":"Wood Halfpieces",
+         "resources":{
+            "fiber":8,
+            "wood":15
+         }
+      },
+      "wood_halfpitches":{
+         "name":"Wood Halfpitches",
+         "resources":{
+            "fiber":8,
+            "wood":15
+         }
+      },
+      "wood_ladder":{
+         "name":"Wood Ladder",
+         "resources":{
+            "fiber":10,
+            "wood":20
+         }
+      },
+      "wood_railing":{
+         "name":"Wood Railing",
+         "resources":{
+            "fiber":8,
+            "wood":15
+         }
+      },
+      "wood_railing_gate":{
+         "name":"Wood Railing Gate",
+         "resources":{
+            "fiber":10,
+            "wood":20
+         }
+      },
+      "wood_ramp":{
+         "name":"Wood Ramp",
+         "resources":{
+            "fiber":15,
+            "wood":25
+         }
+      },
+      "wood_roof":{
+         "name":"Wood Roof",
+         "resources":{
+            "fiber":15,
+            "wood":30
+         }
+      },
+      "wood_roof_corner":{
+         "name":"Wood Roof Corner",
+         "resources":{
+            "fiber":12,
+            "wood":25
+         }
+      },
+      "wood_stairs":{
+         "name":"Wood Stairs",
+         "resources":{
+            "fiber":15,
+            "wood":25
+         }
+      },
+      "wood_trapdoor":{
+         "name":"Wood Trapdoor",
+         "resources":{
+            "fiber":10,
+            "wood":20
+         }
+      },
+      "wood_wall":{
+         "name":"Wood Wall",
+         "resources":{
+            "fiber":15,
+            "wood":30
+         }
+      },
+      "wood_wall_angled":{
+         "name":"Wood Wall Angled",
+         "resources":{
+            "fiber":12,
+            "wood":25
+         }
+      },
+      "wood_window":{
+         "name":"Wood Window",
+         "resources":{
+            "fiber":10,
+            "wood":20
+         }
+      }
+   }
+}

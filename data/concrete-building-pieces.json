@@ -1,0 +1,117 @@
+{
+   "name":"Concrete Building Pieces",
+   "pieces":{
+      "concrete_beam":{
+         "name":"Concrete Beam",
+         "resources":{
+            "steel_rebar":8,
+            "concrete_mix":2,
+            "steel_screw":2
+         }
+      },
+      "concrete_floor":{
+         "name":"Concrete Floor",
+         "resources":{
+            "steel_rebar":10,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "concrete_floor_trapdoor":{
+         "name":"Concrete Floor Trapdoor",
+         "resources":{
+            "steel_rebar":10,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "concrete_frame":{
+         "name":"Concrete Frame",
+         "resources":{
+            "steel_rebar":20,
+            "concrete_mix":8,
+            "steel_screw":10
+         }
+      },
+      "concrete_halfpieces":{
+         "name":"Concrete Halfpieces",
+         "resources":{
+            "steel_rebar":10,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "concrete_halfpitches":{
+         "name":"Concrete Halfpitches",
+         "resources":{
+            "steel_rebar":10,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "concrete_railing":{
+         "name":"Concrete Railing",
+         "resources":{
+            "aluminium_ore":2,
+            "wood":2,
+            "steel_screw":6
+         }
+      },
+      "concrete_ramp":{
+         "name":"Concrete Ramp",
+         "resources":{
+            "steel_rebar":12,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "concrete_roof":{
+         "name":"Concrete Roof",
+         "resources":{
+            "steel_rebar":12,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "concrete_roof_corner":{
+         "name":"Concrete Roof Corner",
+         "resources":{
+            "steel_rebar":8,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "concrete_stairs":{
+         "name":"Concrete Stairs",
+         "resources":{
+            "steel_rebar":12,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "concrete_wall":{
+         "name":"Concrete Wall",
+         "resources":{
+            "steel_rebar":10,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "concrete_wall_angled":{
+         "name":"Concrete Wall Angled",
+         "resources":{
+            "steel_rebar":8,
+            "concrete_mix":4,
+            "steel_screw":4
+         }
+      },
+      "heavy_trapdoor":{
+         "name":"Heavy Trapdoor",
+         "resources":{
+            "iron_ingot":12,
+            "steel_screw":4,
+            "epoxy":4
+         }
+      }
+   }
+}
