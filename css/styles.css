@@ -206,6 +206,7 @@ option {
     min-width: 100px;
 }
 
+/* Desktop view - keep the narrow width for the × button */
 .table th:last-child,
 .table td:last-child {
     min-width: 50px;
@@ -336,4 +337,148 @@ td .choices {
     border-width: 5px 10px 5px 0;
     border-style: solid;
     border-color: transparent #ddd transparent transparent;
+}
+
+/* Responsive table styles */
+@media screen and (max-width: 768px) {
+    /* Hide table headers on mobile */
+    #piecesTable thead {
+        display: none;
+    }
+
+    /* Make rows behave like cards */
+    #piecesTable tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 1rem;
+        background: var(--card-background);
+    }
+
+    /* Make cells behave like rows with proper spacing */
+    #piecesTable td {
+        display: flex;
+        justify-content: space-between; /* This will align label and value */
+        align-items: center;
+        padding: 0.5rem 0;
+        border: none;
+    }
+
+    /* Style for resource amounts */
+    #piecesTable td.resource-amount {
+        padding: 0.25rem 0;
+    }
+
+    /* Add labels for each cell */
+    #piecesTable td::before {
+        content: attr(data-label);
+        font-weight: 500;
+        color: var(--text-color);
+    }
+
+    /* Special handling for the piece type cell with dropdown */
+    #piecesTable td:first-child {
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    #piecesTable td:first-child::before {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Special styling for the delete button cell */
+    #piecesTable td:last-child {
+        justify-content: flex-end;
+        border-top: 1px solid var(--border-color);
+        margin-top: 0.5rem;
+        padding-top: 1rem;
+    }
+
+    #piecesTable td:last-child::before {
+        display: none;
+    }
+
+    /* Adjust select container width */
+    .select-with-tooltip {
+        width: 100%;
+    }
+
+    /* Make quantity input take full width */
+    .quantity-input {
+        width: 100px;
+        text-align: right;
+    }
+
+    /* Resource amounts alignment */
+    .resource-amount {
+        text-align: right;
+    }
+
+    .table th:last-child, 
+    .table td:last-child {
+        min-width: auto;
+        width: auto;
+    }
+
+    /* Style the remove button */
+    .btn-icon.delete-row {
+        width: auto;
+        min-width: 80px;
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #summaryTable thead {
+        display: none;
+    }
+
+    #summaryTable tr {
+        display: flex;
+        padding: 0.5rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    #summaryTable td {
+        flex: 1;
+    }
+
+    #summaryTable td:first-child {
+        font-weight: bold;
+    }
+}
+
+/* Desktop/Mobile visibility classes */
+.mobile-only {
+    display: none;
+}
+
+.desktop-only {
+    display: inline;
+}
+
+@media screen and (max-width: 768px) {
+    .mobile-only {
+        display: inline;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+
+    /* Update delete button styling for mobile */
+    .btn-icon.delete-row {
+        width: auto;
+        padding: 0.5rem 1rem;
+        background: #dd001a;
+        color: white;
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+    }
+
+    .btn-icon.delete-row:hover {
+        background: #fe4359;
+    }
 }

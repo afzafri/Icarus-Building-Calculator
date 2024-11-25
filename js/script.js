@@ -122,7 +122,8 @@ function addNewPieceRow() {
     // Create delete button
     const deleteButton = document.createElement('button');
     deleteButton.className = 'btn btn-icon delete-row';
-    deleteButton.innerHTML = '×';
+     // Use × for desktop, "Remove" for mobile
+    deleteButton.innerHTML = '<span class="desktop-only">×</span><span class="mobile-only">Remove</span>';
     deleteButton.onclick = () => {
         row.remove();
         updateResourceColumns();
@@ -173,6 +174,11 @@ function addNewPieceRow() {
         updateRowResources(row, pieceSelect, quantityInput);
         updateTotalResources();
     });
+
+    // Add data-label attributes to the cells
+    selectCell.dataset.label = 'Piece Type';
+    quantityCell.dataset.label = 'Quantity';
+    deleteCell.dataset.label = 'Actions';
 }
 
 // Update resources for a specific row
@@ -223,16 +229,16 @@ function updateResourceColumns() {
         const resources = row.dataset.resources ? JSON.parse(row.dataset.resources) : {};
         const quantity = parseInt(row.dataset.quantity) || 0;
         
-        // Remove only resource cells, keeping the first two and last cells intact
+        // Remove only resource cells
         const cells = Array.from(row.children);
         cells.slice(2, -1).forEach(cell => cell.remove());
         
-        // Add resource cells
+        // Add resource cells with data labels
         usedResources.forEach(resource => {
             const td = document.createElement('td');
             td.className = 'resource-amount';
+            td.dataset.label = formatResourceName(resource); // Add data-label attribute
             td.textContent = (resources[resource] || 0) * quantity;
-            // Insert before the last cell (delete button)
             row.insertBefore(td, row.lastElementChild);
         });
     });
