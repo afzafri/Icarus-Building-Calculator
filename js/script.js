@@ -291,7 +291,6 @@ function formatResourceName(resource) {
         .join(' ');
 }
 
-// Add this new function
 function updatePieceTooltip(value, tooltipSpan) {
     const [buildingType, pieceKey] = value.split(':');
     const piece = allBuildingPieces[buildingType].pieces[pieceKey];

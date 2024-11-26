@@ -359,7 +359,7 @@ td .choices {
     /* Make cells behave like rows with proper spacing */
     #piecesTable td {
         display: flex;
-        justify-content: space-between; /* This will align label and value */
+        justify-content: space-between;
         align-items: center;
         padding: 0.5rem 0;
         border: none;
